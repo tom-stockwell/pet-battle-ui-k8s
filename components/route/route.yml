@@ -1,0 +1,17 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: pet-battle-ui
+  annotations:
+    haproxy.router.openshift.io/balance: roundrobin
+spec:
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: pet-battle-ui
+    weight: 100
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  wildcardPolicy: None
