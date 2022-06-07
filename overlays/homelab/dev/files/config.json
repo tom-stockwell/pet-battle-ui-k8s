@@ -1,0 +1,12 @@
+{
+	"catsUrl": "https://pet-battle-api.dev.demo-tekton-argocd.apps.paas.lab.stocky37.dev",
+	"tournamentsUrl": "https://tournaments-api.dev.demo-tekton-argocd.apps.paas.lab.stocky37.dev",
+	"matomoUrl": "https://matomo.dev.demo-tekton-argocd.apps.paas.lab.stocky37.dev",
+	"keycloak": {
+		"url": "https://keycloak.dev.demo-tekton-argocd.apps.paas.lab.stocky37.dev/auth/",
+		"realm": "pet-battle",
+		"clientId": "pet-battle-ui",
+		"redirectUri": "https://pet-battle.dev.demo-tekton-argocd.apps.paas.lab.stocky37.dev/tournament",
+		"enableLogging": true
+	}
+}

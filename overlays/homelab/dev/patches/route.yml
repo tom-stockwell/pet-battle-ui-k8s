@@ -1,0 +1,6 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: pet-battle-ui
+spec:
+  host: pet-battle.dev.demo-tekton-argocd.apps.paas.lab.stocky37.dev
