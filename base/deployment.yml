@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pet-battle-ui
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: '25%'
+      maxUnavailable: '25%'
+  selector:
+    matchLabels:
+      deployment: pet-battle-ui
+  template:
+    metadata:
+      labels:
+        deployment: pet-battle-ui
+    spec:
+      containers:
+        - name: app
+          image: 'quay.io/petbattle/pet-battle:latest'
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - name: config
+              mountPath: /opt/app-root/src/assets/configuration
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: config
+          configMap:
+            name: pet-battle-ui-config
+            defaultMode: 420
+  revisionHistoryLimit: 10
