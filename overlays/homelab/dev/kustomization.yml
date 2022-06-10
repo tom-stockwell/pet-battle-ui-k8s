@@ -9,6 +9,7 @@ resources:
 
 components:
   - ../../../components/route
+  - ../../../components/hooks
 
 patches:
   - path: patches/route.yml
